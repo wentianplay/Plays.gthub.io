@@ -1,376 +1,111 @@
- 
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文天玩财务流水公示</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta http-equiv="refresh" content="57">
+    <title>文天玩WenTianPlay | 财务流水公示官方网站</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f0f8f5; color: #333; line-height: 1.6; }
+        :root {
+            --primary-color: #1abc9c;
+            --primary-dark: #16a085;
+            --light-bg: #e8f6f3;
+            --text-color: #2c3e50;
+            --light-text: #7f8c8d;
+            --border-color: #d1e8e2;
         }
-        
-        body {
-            background: linear-gradient(135deg, #0a3717 0%, #071c0d 100%);
-            color: #f0f0f0;
-            min0f0f0;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* 炫富标题样式 */
-        .header {
-            text-align: center;
-            padding: 40px 0 20px;
-            margin-bottom: 30px;
-            position: relative;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        .header h1 {
-            font-size: 3.8rem;
-            background: linear-gradient(to right, #d4af37, #ffd700, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
-            letter-spacing: 4px;
-            animation: shine 3s infinite;
-            margin-bottom: 25px;
-        }
-        
-        .header p {
-            font-size: 1.2rem;
-            color: #a0c0a0;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        /* 公告区域 */
-        .announcement {
-            background: rgba(10, 40, 15, 0.7);
-            border: 2px solid rgba(212, 175, 55, 0.4);
-            border-radius: 16px;
-            padding: 25px;
-            margin: 0 auto 40px;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .announcement::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, transparent, #d4af37, transparent);
-        }
-        
-        .announcement h2 {
-            color: #d4af37;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .announcement h2 i {
-            font-size: 2rem;
-        }
-        
-        .announcement p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #f0f0f0;
-        }
-        
-        .announcement .highlight {
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 1.6rem;
-            display: inline-block;
-            margin: 0 5px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-        }
-        
-        /* 财务表格样式 */
-        .finance-container {
-            background: rgba(5, 25, 10, 0.8);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            margin-bottom: 50px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        .finance-header {
-            padding: 25px;
-            background: linear-gradient(to right, #0c481f, #1a5c2c);
-        }
-        
-        .finance-header h2 {
-            font-size: 2rem;
-            color: #d4af37;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .finance-header h2 i {
-            margin-right: 15px;
-            font-size: 1.8rem;
-        }
-        
-        .finance-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-        
-        .finance-table thead {
-            background: rgba(10, 50, 20, 0.9);
-        }
-        
-        .finance-table th {
-            padding: 22px 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.25rem;
-            color: #d4af37;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #d4af37;
-        }
-        
-        .finance-table tbody tr {
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        
-        .finance-table tbody tr:nth-child(even) {
-            background: rgba(10, 40, 15, 0.4);
-        }
-        
-        .finance-table tbody tr:hover {
-            background: rgba(212, 175, 55, 0.12);
-        }
-        
-        .finance-table td {
-            padding: 20px;
-            font-size: 1.15rem;
-        }
-        
-        .finance-table td:first-child {
-            color: #f5f5f5;
-            font-weight: 500;
-        }
-        
-        .finance-table td:nth-child(2) {
-            color: #c0d0c0;
-        }
-        
-        .finance-table td:last-child {
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-        }
-        
-        /* 底部信息 */
-        .footer {
-            text-align: center;
-            padding: 30px 0;
-            color: #a0c0a0;
-            font-size: 1.1rem;
-            border-top: 1px solid rgba(212, 175, solid rgba(212, 175, 55, 0.2);
-            margin-top: 30px;
-        }
-        
-        /* 动画效果 */
-        @keyframes shine {
-            0% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-            50% { text-shadow: 0 0 35px rgba(212, 175, 55, 0.9); }
-            100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
-        }
-        
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* 装饰元素 */
-        .decoration {
-            position: absolute;
-            opacity: 0.08;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        .gold-bar {
-            width: 120px;
-            height: 20px;
-            background: linear-gradient(to right, #d4af37, #ffd700, #d4af37);
-            border-radius: 4px;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 900px) {
-            .header h1 {
-                font-size: 2.8rem;
-            }
-            
-            .announcement {
-                padding: 20px;
-            }
-            
-            .announcement h2 {
-                font-size: 1.6rem;
-            }
-            
-            .announcement p {
-                font-size: 1.1rem;
-            }
-            
-            .announcement .highlight {
-                font-size: 1.3rem;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .finance-table th, .finance-table td {
-                padding: 15px 12px;
-                font-size: 1rem;
-            }
-            
-            .finance-table td:last-child {
-                font-size: 1.2rem;
-            }
-            
-            .finance-header h2 {
-                font-size: 1.6rem;
-            }
+        .announcement { background-color: var(--primary-color); color: white; padding: 0.8rem 2rem; text-align: center; font-weight: bold; }
+        header { background-color: var(--primary-dark); color: white; padding: 1.5rem 2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        h1 { margin-bottom: 0.5rem; font-size: 2.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .subtitle { color: #ecf0f1; font-weight: normal; font-size: 1.1rem; }
+        .refresh-info { background-color: var(--light-bg); padding: 10px; border-radius: 5px; text-align: center; margin: 1rem 0; color: var(--primary-dark); font-weight: bold; border: 1px dashed var(--primary-color); }
+        .news-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+        .news-card { background-color: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.08); transition: all 0.3s ease; border-left: 4px solid var(--primary-color); }
+        .news-card:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .news-content { padding: 1.8rem; }
+        .news-date { color: var(--primary-dark); font-size: 0.9rem; margin-bottom: 0.8rem; font-weight: 600; display: flex; align-items: center; }
+        .news-date::before { content: "🍃"; margin-right: 8px; }
+        .news-title { font-size: 1.5rem; margin-bottom: 1.2rem; color: var(--text-color); border-bottom: 1px solid var(--border-color); padding-bottom: 0.8rem; }
+        .news-excerpt { color: var(--light-text); line-height: 1.7; margin-bottom: 1.5rem; font-size: 1.05rem; }
+        footer { text-align: center; padding: 2rem; color: var(--light-text); font-size: 0.9rem; margin-top: 2rem; border-top: 1px solid var(--border-color); }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .announcement { padding: 0.8rem 1rem; font-size: 0.9rem; }
+            .news-content { padding: 1.2rem; }
+            .news-title { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
+    <div class="announcement">财务流水公示官方网站</div>
+    <header>
+        <div class="container">
+            <h1>文天玩财务流水</h1>
+            <p class="subtitle">🌐域名注册与续费</p>
+        </div>
+    </header>
     <div class="container">
-        <!-- 标题区域 -->
-        <div class="header">
-            <h1>文天玩财务流水公示</h1>
-            <p>本系统公示企业级财务流水数据，展示项目、时间与金额信息，保障企业财务透明化运作</p>
-        </div>
-        
-        <!-- 公告区域 -->
-        <div class="announcement fade-in">
-            <h2><i class="fas fa-bullhorn"></i> 重要公告</h2>
-            <p>
-                文天玩域名成本仅需 <span class="highlight">¥588</span> /年，
-                彰显企业高效成本控制能力，以极致性价比保障品牌全球影响力
-            </p>
-        </div>
-        
-        <!-- 财务数据展示区域 -->
-        <div class="finance-container -->
-        <div class="finance-container">
-            <div class="finance-header">
-                <h2><i class="fas fa-file-invoice-dollar"></i> 财务流水数据</h2>
-            </div>
-            
-            <div class="table-responsive">
-                <table class="finance-table">
-                    <thead>
-                        <tr>
-                            <th>项目</th>
-                            <th>时间</th>
-                            <th>金额</th>
-                        </tr>
-                    </thead>
-                    <tbody id="financeData">
-                        <!-- 数据将通过JavaScript填充 -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <!-- 底部信息 -->
-        <div class="footer">
-            <p>© 2023 文天玩集团财务系统 | 企业级财务流水公示平台 | 数据更新时间: <span id="updateTime"></span></p>
+        <div class="refresh-info">页面每 57 秒自动刷新一次 | 最后刷新时间: <span id="refreshTime"></span></div>
+        <div class="news-list" id="newsList">
+            <div class="loading">加载中...</div>
         </div>
     </div>
-
+    <footer>
+        <p>文天玩财务流水公示官方网站 &copy; 2025 | 不忘初心，逐梦未来</p>
+    </footer>
     <script>
-        // 从 rmb.json 获取数据
-        const fetchData = async () => {
-            try {
-                const response = await fetch('./rmb.json');
-                if (!response.ok) {
-                    throw new Error('数据加载失败');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('加载数据时出错:', error);
-                return [];
-           出错:', error);
-                return [];
-            }
-        };
 
-        // 格式化金额（添加千位分隔符）
-        const formatAmount = (amount) => {
-            return '¥ ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        };
+        function updateRefreshTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('refreshTime').textContent = timeString;
+        }
+        updateRefreshTime();
+        setInterval(updateRefreshTime, 1000);
 
-        // 渲染页面
-        const renderPage = async () => {
-            const data = await fetchData();
-            
-            // 更新更新时间
-            document.getElementById('updateTime').textContent = new Date().toLocaleString();
-            
-            // 渲染表格
-            const tableBody = document.getElementById('financeData');
-            tableBody.innerHTML = '';
-            
-            data.forEach(item => {
-                const row = document.createElement('tr');
-                row.className = 'fade-in';
-                row.innerHTML = `
-                    <td>${item.项目}</tdtd>${item.项目}</td>
-                    <td>${item.时间}</td>
-                    <td>${formatAmount(item.金额)}</td>
-                `;
-                tableBody.appendChild(row);
+
+        fetch('./op.json')
+            .then(response => {
+                if (!response.ok) throw new Error('网络响应不正常，请稍后尝试。');
+                return response.json();
+            })
+            .then(diaryData => {
+                const newsList = document.getElementById('newsList');
+                newsList.innerHTML = '';
+
+                diaryData.diaries.forEach(diary => {
+                    const newsCard = document.createElement('div');
+                    newsCard.className = 'news-card';
+
+                    const date = new Date(diary.updateTime);
+                    const year = date.getFullYear();
+                    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                    const day = date.getDate().toString().padStart(2, '0');
+
+                    const formattedDate = `${year}年${month}月${day}日 ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+                    newsCard.innerHTML = `
+                        <div class="news-content">
+                            <div class="news-date">${formattedDate}</div>
+                            <h3 class="news-title">${diary.title}</h3>
+                            <p class="news-excerpt">${diary.excerpt}</p>
+                        </div>
+                    `;
+
+                    newsList.appendChild(newsCard);
+                });
+            })
+            .catch(error => {
+                const newsList = document.getElementById('newsList');
+                newsList.innerHTML = `<div class="loading">加载失败: ${error.message}</div>`;
+                console.error('获取财务数据时出错:', error);
             });
-        };
 
-        // 页面加载完成后执行
-        window.addEventListener('DOMContentLoaded', renderPage);
+        // 每57秒刷新内容
+        setInterval(() => location.reload(), 57000);
     </script>
 </body>
 </html>
- 
