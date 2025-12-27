@@ -67,7 +67,7 @@
         setInterval(updateRefreshTime, 1000);
 
 
-        fetch('./rmb.json')
+        fetch('https://api.wentianplay.com/api/rmb.json')
             .then(response => {
                 if (!response.ok) throw new Error('网络响应不正常，请稍后尝试。');
                 return response.json();
